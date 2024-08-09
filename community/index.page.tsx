@@ -17,7 +17,7 @@ const hackathon = require("../static/img/events/Hackathons.png");
 const conference = require("../static/img/events/Conference.png");
 const zone = require("../static/img/events/XRPLZone.png");
 const brazil = require("../static/img/events/event-meetup-brazil.png");
-const korea = require("../static/img/events/SouthKoreaMeetup.png")
+const korea = require("../static/img/events/SouthKoreaMeetup.png");
 const findNearestUpcomingEvent = (events) => {
   let nearestEvent = null;
   let nearestDateDiff = Infinity;
@@ -182,6 +182,30 @@ const events = [
     end_date: "July 23, 2024",
   },
   {
+    name: "XRPL Builder Office Hours",
+    description:
+      "XRPL Builder Office Hours is an open forum hosted monthly by Developer Advocates to answer technical and business questions from community members.",
+    type: "info-session",
+    link: "https://ripple.zoom.us/meeting/register/tJMscOCsrDoiHNUN6hZLpFVR69OcfG9rXtIA#/registration",
+    location: "Virtual - Zoom",
+    date: "August 23, 2024",
+    image: infoSession,
+    start_date: "August 23, 2024",
+    end_date: "August 23, 2024",
+  },
+  {
+    name: "XRP Ledger Hackathon Seoul 2024",
+    description:
+      "Calling all developers in Korea or attending Korea Blockchain Week! Join us for an exclusive pre-KBW meetup in Gangnam, Seoul! Be part of an exciting opportunity to collaborate with fellow builders leveraging the XRP Ledger. Don’t miss this chance to connect with industry peers, explore local funding initiatives, and fuel your projects with new insights just before the main KBW event!",
+    type: "hackathon",
+    link: "https://lu.ma/1viq6evg",
+    location: "Seoul, South Korea",
+    date: "August 31 - September 1, 2024",
+    image: hackathon,
+    start_date: "August 31, 2024",
+    end_date: "September 1, 2024",
+  },
+  {
     name: "XRPL Zone Seoul",
     description:
       "Join us at XRPL Zone Seoul where developers, corporates, fintechs, banks, VCs, academia, and the XRP community come together under one roof for the biggest XRPL event in South Korea!",
@@ -205,24 +229,12 @@ const events = [
     start_date: "September 4, 2024",
     end_date: "September 4, 2024",
   },
-  {
-    name: "XRPL Builder Office Hours",
-    description:
-      "XRPL Builder Office Hours is an open forum hosted monthly by Developer Advocates to answer technical and business questions from community members.",
-    type: "info-session",
-    link: "https://ripple.zoom.us/meeting/register/tJMscOCsrDoiHNUN6hZLpFVR69OcfG9rXtIA#/registration",
-    location: "Virtual - Zoom",
-    date: "August 23, 2024",
-    image: infoSession,
-    start_date: "August 23, 2024",
-    end_date: "August 23, 2024",
-  },
 ];
 const { nearestDateDiff, nearestEvent } = findNearestUpcomingEvent(events);
 const XrplEventsAndCarouselSection = ({ events }) => {
   const { useTranslate } = useThemeHooks();
   const { translate } = useTranslate();
-  const [currentIndex, setCurrentIndex] = useState(11);
+  const [currentIndex, setCurrentIndex] = useState(12);
 
   const updateCarousel = () => {
     const prevEvent = events[currentIndex - 1] || null;
@@ -655,6 +667,73 @@ const CommunityPage: React.FC = () => {
           </div>
         </div>
       </section>
+      {/* Bottom Cards Section 2 cards */}
+      <section className="bottom-cards-section bug-bounty">
+        <div className="com-card">
+          <img className="top-right-img bug-bounty-card-bg" alt="Top Right Image" />
+          <div className="card-content">
+            <h6 className="card-title">
+              {translate("RippleX Bug Bounty Program")}
+            </h6>
+            <h6 className="card-subtitle">
+              {translate(
+                "Contribute to the XRP Ledger's"
+              )}
+              <br/>
+              Security
+            </h6>
+            <p className="card-description">
+              {translate(
+                "RippleX’s Bug Bounty, part of Ripple's 1 Billion XRP pledge, strengthens XRP Ledger security and supports its ecosystem."
+              )}
+              <p className="card-description">
+                {
+                  translate("Use this program to report bugs in RippleX/rippled. Send a detailed report of a qualifying bug to ")
+                }
+              <a href="mailto:bugs@ripple.com">bugs@ripple.com</a>
+              {
+                translate(" and use the ")
+              }
+              <a href="https://ripple.com/files/bug-bounty.asc">Public Key.</a>
+              </p>
+            </p>
+            <div className="card-links">
+              <Link
+                className="com-card-link"
+                target="_blank"
+                to="https://medium.com/ripplexdev/highlighting-the-ripplex-bug-bounty-program-545ea787f900"
+              >
+                {translate("Learn more")}
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="com-card">
+          <img className="bottom-right-img bug-bounty-card-bg-2" alt="Bottom Right Image" />
+          <div className="card-content">
+            <h6 className="card-title">{translate("Report a Scam")}</h6>
+            <h6 className="card-subtitle pr-bt28">
+              {translate(
+                "Report Scams to Safeguard Our Community"
+              )}
+            </h6>
+            <p className="card-description">
+              {translate(
+                "In an evolving industry where trust and security are critical, scams continue to impede progress in crypto and blockchain. Help mitigate scammers by reporting scams."
+              )}
+            </p>
+            <div className="card-links">
+              <Link
+                target="_blank"
+                className="com-card-link"
+                to="/community/report-a-scam/"
+              >
+                {translate("Report a Scam")}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>{" "}
       {/* Bottom Cards Section */}
       <section className="bottom-cards-section">
         <div className="com-card">
@@ -707,7 +786,7 @@ const CommunityPage: React.FC = () => {
           <img className="bottom-right-img" alt="Bottom Right Image" />
           <div className="card-content">
             <h6 className="card-title">{translate("XRPL Careers")}</h6>
-            <h6 className="card-subtitle">
+            <h6 className="card-subtitle pr-bt16">
               {translate(
                 "Discover your next career opportunity in the XRPL community"
               )}
